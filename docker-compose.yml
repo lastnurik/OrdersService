@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=ordersuser
+      - POSTGRES_PASSWORD=Qwerty123456
+      - POSTGRES_DB=ordersdb
+    volumes:
+      - orders_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  api:
+    build: .
+    depends_on:
+      - db
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=ordersdb;Username=ordersuser;Password=Qwerty123456
+    ports:
+      - "5000:80"
+    restart: on-failure
+
+volumes:
+  orders_data:

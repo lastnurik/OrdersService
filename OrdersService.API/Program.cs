@@ -40,4 +40,28 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var logger = services.GetRequiredService<ILogger<Program>>();
+    var db = services.GetRequiredService<AppDbContext>();
+
+    var retries = 5;
+    for (int i = 0; i < retries; i++)
+    {
+        try
+        {
+            logger.LogInformation("Applying migrations...");
+            db.Database.Migrate();
+            logger.LogInformation("Migrations applied");
+            break;
+        }
+        catch (Exception ex)
+        {
+            logger.LogWarning(ex, "Migration attempt {Attempt} failed. Retrying in 5 seconds...", i + 1);
+            Thread.Sleep(5000);
+        }
+    }
+}
+
 app.Run();

@@ -16,13 +16,13 @@ namespace OrdersService.Infrastructure.Repositories
             _db = db;
         }
 
-        public async Task AddAsync(Order order, CancellationToken ct = default)
+        public async Task AddAsync(Order order, CancellationToken ct)
         {
             await _db.AddAsync(order, ct);
             await _db.SaveChangesAsync(ct);
         }
 
-        public async Task<bool> DeleteAsync(Guid id, CancellationToken ct = default)
+        public async Task<bool> DeleteAsync(Guid id, CancellationToken ct)
         {
             var entity = await GetByIdAsync(id, ct);
             if (entity != null)
@@ -35,7 +35,7 @@ namespace OrdersService.Infrastructure.Repositories
             return false;
         }
 
-        public async Task<(List<Order> Items, int TotalCount)> GetAllAsync(int pageNumber, int pageSize, CancellationToken ct = default)
+        public async Task<(List<Order> Items, int TotalCount)> GetAllAsync(int pageNumber, int pageSize, CancellationToken ct)
         {
             var query = _db.Orders.AsQueryable();
             var totalCount = await query.CountAsync(ct);
@@ -47,12 +47,12 @@ namespace OrdersService.Infrastructure.Repositories
             return (items, totalCount);
         }
 
-        public async Task<Order?> GetByIdAsync(Guid id, CancellationToken ct = default)
+        public async Task<Order?> GetByIdAsync(Guid id, CancellationToken ct)
         {
             return await _db.Orders.AsNoTracking().FirstOrDefaultAsync(o => o.Id == id, ct);
         }
 
-        public async Task UpdateAsync(Order order, CancellationToken ct = default)
+        public async Task UpdateAsync(Order order, CancellationToken ct)
         {
             _db.Orders.Update(order);
             await _db.SaveChangesAsync(ct);

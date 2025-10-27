@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OrdersService.Application.DTOs;
-using OrdersService.Application.Interfaces;
 using OrdersService.Application.Orders.Commands;
 using OrdersService.Application.Orders.Queries;
 using OrdersService.API.Models.Requests;
-using System.Runtime.CompilerServices;
-using System.Threading;
+using MediatR;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace OrdersService.API.Controllers
 {
@@ -13,12 +12,12 @@ namespace OrdersService.API.Controllers
     [Route("api/[controller]")]
     public class OrdersController : ControllerBase
     {
-        private readonly IOrderService _orderService;
+        private readonly IMediator _mediator;
         private readonly ILogger<OrdersController> _logger;
 
-        public OrdersController(IOrderService orderService, ILogger<OrdersController> logger)
+        public OrdersController(IMediator mediator, ILogger<OrdersController> logger)
         {
-            _orderService = orderService ?? throw new ArgumentNullException(nameof(orderService));
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
@@ -27,16 +26,16 @@ namespace OrdersService.API.Controllers
         {
             _logger.LogInformation("Getting all orders");
             var query = new GetAllOrdersQuery(request.PageNumber, request.PageSize);
-            var orders = await _orderService.GetAllAsync(query, ct);
+            var orders = await _mediator.Send(query, ct);
             _logger.LogInformation("Returned orders");
             return Ok(orders);
         }
 
-        [HttpGet("{id:guid}")]
+        [HttpGet("{id:guid}", Name = "GetOrderById")]
         public async Task<ActionResult<OrderDto>> Get(Guid id, CancellationToken ct)
         {
             _logger.LogInformation("Getting an order with id: {OrderId}", id);
-            var order = await _orderService.GetByIdAsync(new GetOrderByIdQuery(id), ct);
+            var order = await _mediator.Send(new GetOrderByIdQuery(id), ct);
             if (order == null)
             {
                 _logger.LogInformation("Order with Id=\"{OrderId}\" was Not Found", id);
@@ -52,9 +51,9 @@ namespace OrdersService.API.Controllers
         {
             _logger.LogInformation("Creating an order");
             var command = new CreateOrderCommand(request.CustomerName, request.TotalAmount, request.Description ?? string.Empty);
-            var id = await _orderService.CreateAsync(command, ct);
+            var id = await _mediator.Send(command, ct);
             _logger.LogInformation("Order with Id=\"{OrderId}\" was created", id);
-            return CreatedAtAction(nameof(Get), new { id });
+            return StatusCode(StatusCodes.Status201Created, new { id });
         }
 
         [HttpPut("{id:guid}")]
@@ -62,7 +61,7 @@ namespace OrdersService.API.Controllers
         {
             _logger.LogInformation("Updating an order with Id: {OrderId}", id);
             var command = new UpdateOrderCommand(id, request.CustomerName ?? string.Empty, request.TotalAmount, request.Status ?? string.Empty, request.Description ?? string.Empty);
-            var ok = await _orderService.UpdateAsync(command, ct);
+            var ok = await _mediator.Send(command, ct);
 
             if (ok)
             {
@@ -78,7 +77,7 @@ namespace OrdersService.API.Controllers
         public async Task<IActionResult> Delete(Guid id, CancellationToken ct)
         {
             _logger.LogInformation("Deleting an order with Id: {OrderId}", id);
-            var ok = await _orderService.DeleteAsync(new DeleteOrderCommand(id), ct);
+            var ok = await _mediator.Send(new DeleteOrderCommand(id), ct);
 
             if (ok)
             {

@@ -1,4 +1,4 @@
-﻿
+﻿using MediatR;
 
 namespace OrdersService.Application.Orders.Commands
 {
@@ -7,5 +7,5 @@ namespace OrdersService.Application.Orders.Commands
         string CustomerName,
         decimal TotalAmount,
         string Description
-        );
+        ) : IRequest<Guid> ;
 }

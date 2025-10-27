@@ -41,7 +41,7 @@ namespace OrdersService.API.Middlewares
                 else
                 {
                     statusCode = (int)HttpStatusCode.InternalServerError;
-                    responseObj = new { message = "An unexpected error occurred." };
+                    responseObj = new { message = $"An unexpected error occurred, {ex.Message}" };
                 }
 
                 context.Response.StatusCode = statusCode;

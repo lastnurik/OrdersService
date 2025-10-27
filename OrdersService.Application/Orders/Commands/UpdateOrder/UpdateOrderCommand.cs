@@ -1,4 +1,5 @@
-﻿using OrdersService.Domain.Enums;
+﻿using MediatR;
+using OrdersService.Domain.Enums;
 
 namespace OrdersService.Application.Orders.Commands
 {
@@ -9,5 +10,5 @@ namespace OrdersService.Application.Orders.Commands
         decimal TotalAmount,
         string Status,
         string Description
-        );
+        ) : IRequest<bool>;
 }

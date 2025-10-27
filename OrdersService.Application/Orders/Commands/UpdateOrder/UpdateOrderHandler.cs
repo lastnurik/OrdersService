@@ -1,0 +1,59 @@
+﻿using AutoMapper;
+using MediatR;
+using OrdersService.Application.Orders.Commands;
+using OrdersService.Domain.Repositories;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+
+namespace OrdersService.Application.Orders.Commands
+{
+    public class UpdateOrderHandler : IRequestHandler<UpdateOrderCommand, bool>
+    {
+        private readonly IOrderRepository _repo;
+
+        public UpdateOrderHandler(IOrderRepository repo)
+        {
+            _repo = repo;
+        }
+        public async Task<bool> Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
+        {
+            var existingEntity = await _repo.GetByIdAsync(request.Id, cancellationToken);
+
+            if (existingEntity == null)
+            {
+                return false;
+            }
+
+            if (!string.IsNullOrEmpty(request.CustomerName))
+            {
+                existingEntity.CustomerName = request.CustomerName;
+            }
+
+            existingEntity.TotalAmount = request.TotalAmount;
+
+            if (!string.IsNullOrEmpty(request.Status))
+            {
+                if (Enum.TryParse<Domain.Enums.OrderStatus>(request.Status, true, out var status))
+                {
+                    existingEntity.Status = status;
+                }
+                else
+                {
+                    throw new Exceptions.InvalidOrderStatusException(request.Status);
+                }
+            }
+
+            if (!string.IsNullOrEmpty(request.Description))
+            {
+                existingEntity.Description = request.Description;
+            }
+
+            await _repo.UpdateAsync(existingEntity);
+            return true;
+        }
+    }
+}

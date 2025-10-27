@@ -1,4 +1,5 @@
-﻿
+﻿using MediatR;
+using OrdersService.Application.DTOs;
 
 namespace OrdersService.Application.Orders.Queries
 {
@@ -6,5 +7,5 @@ namespace OrdersService.Application.Orders.Queries
     (
         int PageNumber = 1,
         int PageSize = 10
-        );
+        ) : IRequest<PaginatedResult<OrderDto>> ;
 }

@@ -1,6 +1,5 @@
 using System.Net;
 using System.Text.Json;
-using OrdersService.Application.Exceptions;
 
 namespace OrdersService.API.Middlewares
 {
@@ -28,21 +27,9 @@ namespace OrdersService.API.Middlewares
 
                 object responseObj;
                 int statusCode;
-
-                if (ex is InvalidOrderStatusException invalidStatusEx)
-                {
-                    statusCode = (int)HttpStatusCode.BadRequest;
-                    responseObj = new
-                    {
-                        message = "Invalid order status value.",
-                        invalidValue = invalidStatusEx.InvalidValue
-                    };
-                }
-                else
-                {
-                    statusCode = (int)HttpStatusCode.InternalServerError;
-                    responseObj = new { message = $"An unexpected error occurred, {ex.Message}" };
-                }
+                statusCode = (int)HttpStatusCode.InternalServerError;
+                responseObj = new { message = $"An unexpected error occurred, {ex.Message}" };
+                
 
                 context.Response.StatusCode = statusCode;
                 var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };

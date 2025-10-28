@@ -1,13 +1,5 @@
-﻿using AutoMapper;
-using MediatR;
-using OrdersService.Application.Orders.Commands;
+﻿using MediatR;
 using OrdersService.Domain.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace OrdersService.Application.Orders.Commands
 {

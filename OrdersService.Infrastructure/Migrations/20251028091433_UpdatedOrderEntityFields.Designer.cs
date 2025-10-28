@@ -12,8 +12,8 @@ using OrdersService.Infrastructure.Data;
 namespace OrdersService.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251022192415_enumTypo")]
-    partial class enumTypo
+    [Migration("20251028091433_UpdatedOrderEntityFields")]
+    partial class UpdatedOrderEntityFields
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,6 +49,9 @@ namespace OrdersService.Infrastructure.Migrations
 
                     b.Property<decimal>("TotalAmount")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 

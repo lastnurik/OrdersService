@@ -1,15 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
-using OrdersService.Application.Orders.Commands;
 using OrdersService.Domain.Entities;
 using OrdersService.Domain.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-
 namespace OrdersService.Application.Orders.Commands
 {
     public class CreateOrderHandler : IRequestHandler<CreateOrderCommand, Guid>

@@ -1,15 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using OrdersService.Application.DTOs;
-using OrdersService.Application.Orders.Queries;
 using OrdersService.Domain.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-
 namespace OrdersService.Application.Orders.Queries
 {
     public class GetAllOrdersHandler : IRequestHandler<GetAllOrdersQuery, PaginatedResult<OrderDto>>

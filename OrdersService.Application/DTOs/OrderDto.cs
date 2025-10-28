@@ -12,6 +12,7 @@ namespace OrdersService.Application.DTOs
         Guid Id,
         string CustomerName,
         DateTime CreatedAt,
+        DateTime UpdatedAt,
         decimal TotalAmount,
         string Status,
         string Description

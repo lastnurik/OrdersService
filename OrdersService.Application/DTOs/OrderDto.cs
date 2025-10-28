@@ -14,7 +14,7 @@ namespace OrdersService.Application.DTOs
         DateTime CreatedAt,
         DateTime UpdatedAt,
         decimal TotalAmount,
-        string Status,
+        OrderStatus Status,
         string Description
     );
 }

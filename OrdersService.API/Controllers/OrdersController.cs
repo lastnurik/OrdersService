@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OrdersService.Application.DTOs;
-using OrdersService.Application.Orders.Commands;
-using OrdersService.Application.Orders.Queries;
 using OrdersService.API.Models.Requests;
 using MediatR;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using OrdersService.Application.Queries.GetOrderById;
+using OrdersService.Application.Queries.GetAllOrders;
+using OrdersService.Application.Commands.CreateOrder;
+using OrdersService.Application.Commands.UpdateOrder;
+using OrdersService.Application.Commands.DeleteOrder;
 
 namespace OrdersService.API.Controllers
 {

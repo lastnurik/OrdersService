@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
-using OrdersService.Application.Orders.Commands;
 using OrdersService.Domain.Repositories;
 using System;
 
-namespace OrdersService.Application.Orders.Commands
+namespace OrdersService.Application.Commands.UpdateOrder
 {
     public class UpdateOrderHandler : IRequestHandler<UpdateOrderCommand, bool>
     {

@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
-using OrdersService.Application.Orders;
 using OrdersService.Domain.Repositories;
 using OrdersService.Infrastructure.Data;
 using OrdersService.Infrastructure.Repositories;
 using OrdersService.API.Middlewares;
-using OrdersService.Application.Orders.Commands;
+using OrdersService.Application;
+using OrdersService.Application.Commands.CreateOrder;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -3,7 +3,7 @@ using MediatR;
 using OrdersService.Application.DTOs;
 using OrdersService.Domain.Repositories;
 
-namespace OrdersService.Application.Orders.Queries
+namespace OrdersService.Application.Queries.GetOrderById
 {
     public class GetOrderByIdHandler : IRequestHandler<GetOrderByIdQuery, OrderDto?>
     {

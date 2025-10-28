@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using OrdersService.Domain.Repositories;
 
-namespace OrdersService.Application.Orders.Commands
+namespace OrdersService.Application.Commands.DeleteOrder
 {
     public class DeleteOrderHandler : IRequestHandler<DeleteOrderCommand, bool>
     {

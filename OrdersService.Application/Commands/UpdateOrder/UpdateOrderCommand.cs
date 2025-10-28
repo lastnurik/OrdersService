@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using OrdersService.Domain.Enums;
 
-namespace OrdersService.Application.Orders.Commands
+namespace OrdersService.Application.Commands.UpdateOrder
 {
     public record UpdateOrderCommand
     (

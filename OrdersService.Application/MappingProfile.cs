@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
+using OrdersService.Application.Commands.CreateOrder;
+using OrdersService.Application.Commands.UpdateOrder;
 using OrdersService.Application.DTOs;
-using OrdersService.Application.Orders.Commands;
 using OrdersService.Domain.Entities;
 using OrdersService.Domain.Enums;
-namespace OrdersService.Application.Orders
+namespace OrdersService.Application
 {
     public class MappingProfile : Profile
     {

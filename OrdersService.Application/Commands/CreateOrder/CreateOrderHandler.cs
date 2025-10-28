@@ -2,7 +2,7 @@
 using MediatR;
 using OrdersService.Domain.Entities;
 using OrdersService.Domain.Repositories;
-namespace OrdersService.Application.Orders.Commands
+namespace OrdersService.Application.Commands.CreateOrder
 {
     public class CreateOrderHandler : IRequestHandler<CreateOrderCommand, Guid>
     {

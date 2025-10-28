@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace OrdersService.Application.Orders.Commands
+namespace OrdersService.Application.Commands.CreateOrder
 {
     public record CreateOrderCommand
     (

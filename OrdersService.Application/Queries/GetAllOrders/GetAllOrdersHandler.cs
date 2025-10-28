@@ -2,7 +2,7 @@
 using MediatR;
 using OrdersService.Application.DTOs;
 using OrdersService.Domain.Repositories;
-namespace OrdersService.Application.Orders.Queries
+namespace OrdersService.Application.Queries.GetAllOrders
 {
     public class GetAllOrdersHandler : IRequestHandler<GetAllOrdersQuery, PaginatedResult<OrderDto>>
     {

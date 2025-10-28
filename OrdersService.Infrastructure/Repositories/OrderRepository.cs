@@ -49,7 +49,7 @@ namespace OrdersService.Infrastructure.Repositories
 
         public async Task<Order?> GetByIdAsync(Guid id, CancellationToken ct)
         {
-            return await _db.Orders.AsNoTracking().FirstOrDefaultAsync(o => o.Id == id, ct);
+            return await _db.Orders.FirstOrDefaultAsync(o => o.Id == id, ct);
         }
 
         public async Task UpdateAsync(Order order, CancellationToken ct)

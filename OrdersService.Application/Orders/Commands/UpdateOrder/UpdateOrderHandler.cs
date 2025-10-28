@@ -39,7 +39,7 @@ namespace OrdersService.Application.Orders.Commands
 
             existingEntity.UpdatedAt = DateTime.UtcNow;
 
-            await _repo.UpdateAsync(existingEntity);
+            await _repo.UpdateAsync(existingEntity, cancellationToken);
             return true;
         }
     }

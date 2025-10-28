@@ -1,30 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using OrdersService.Domain.Repositories;
+using OrdersService.API.Extensions;
 using OrdersService.Infrastructure.Data;
-using OrdersService.Infrastructure.Repositories;
 using OrdersService.API.Middlewares;
-using OrdersService.Application;
-using OrdersService.Application.Commands.CreateOrder;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-builder.Services.AddDbContext<AppDbContext>(options =>
-{
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
-}); 
-
-builder.Services.AddAutoMapper(cfg => { }, typeof(MappingProfile).Assembly);
-
-builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateOrderCommand).Assembly));
+builder.Services.AddOrdersService(builder.Configuration);
 
 var app = builder.Build();
 

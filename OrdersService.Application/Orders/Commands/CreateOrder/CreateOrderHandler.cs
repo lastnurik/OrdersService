@@ -21,6 +21,7 @@ namespace OrdersService.Application.Orders.Commands
             entity.Id = Guid.NewGuid();
             entity.Status = Domain.Enums.OrderStatus.Pending;
             entity.CreatedAt = DateTime.UtcNow;
+            entity.UpdatedAt = DateTime.UtcNow;
 
             await _repo.AddAsync(entity, cancellationToken);
             return entity.Id;

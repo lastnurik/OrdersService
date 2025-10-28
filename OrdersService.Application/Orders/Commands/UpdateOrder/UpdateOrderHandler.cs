@@ -30,17 +30,7 @@ namespace OrdersService.Application.Orders.Commands
 
             existingEntity.TotalAmount = request.TotalAmount;
 
-            if (!string.IsNullOrEmpty(request.Status))
-            {
-                if (Enum.TryParse<Domain.Enums.OrderStatus>(request.Status, true, out var status))
-                {
-                    existingEntity.Status = status;
-                }
-                else
-                {
-                    throw new Exceptions.InvalidOrderStatusException(request.Status);
-                }
-            }
+            existingEntity.Status = request.Status;
 
             if (!string.IsNullOrEmpty(request.Description))
             {

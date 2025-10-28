@@ -60,7 +60,7 @@ namespace OrdersService.API.Controllers
         public async Task<IActionResult> Update(Guid id, [FromBody] UpdateOrderRequest request, CancellationToken ct)
         {
             _logger.LogInformation("Updating an order with Id: {OrderId}", id);
-            var command = new UpdateOrderCommand(id, request.CustomerName ?? string.Empty, request.TotalAmount, request.Status ?? string.Empty, request.Description ?? string.Empty);
+            var command = new UpdateOrderCommand(id, request.CustomerName ?? string.Empty, request.TotalAmount, request.Status, request.Description ?? string.Empty);
             var ok = await _mediator.Send(command, ct);
 
             if (ok)

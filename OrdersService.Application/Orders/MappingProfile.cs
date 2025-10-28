@@ -10,10 +10,8 @@ namespace OrdersService.Application.Orders
         public MappingProfile()
         {
             CreateMap<CreateOrderCommand, Order>();
-            CreateMap<UpdateOrderCommand, Order>()
-                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => Enum.Parse<OrderStatus>(src.Status)));
-            CreateMap<Order, OrderDto>()
-                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()));
+            CreateMap<UpdateOrderCommand, Order>();
+            CreateMap<Order, OrderDto>();
         }
     }
 }

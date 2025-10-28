@@ -8,7 +8,7 @@ namespace OrdersService.Application.Orders.Commands
         Guid Id,
         string CustomerName,
         decimal TotalAmount,
-        string Status,
+        OrderStatus Status,
         string Description
         ) : IRequest<bool>;
 }

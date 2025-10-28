@@ -18,7 +18,6 @@ namespace OrdersService.Application.Orders.Queries
         public async Task<PaginatedResult<OrderDto>> Handle(GetAllOrdersQuery request, CancellationToken cancellationToken)
         {
             var (pagedItems, totalCount) = await _repo.GetAllAsync(request.PageNumber, request.PageSize, cancellationToken);
-            var totalPages = (int)Math.Ceiling((double)totalCount / request.PageSize);
 
             var orderDtos = _mapper.Map<List<OrderDto>>(pagedItems);
 
@@ -28,7 +27,6 @@ namespace OrdersService.Application.Orders.Queries
                 PageNumber = request.PageNumber,
                 PageSize = request.PageSize,
                 TotalCount = totalCount,
-                TotalPages = totalPages,
             };
         }
     }

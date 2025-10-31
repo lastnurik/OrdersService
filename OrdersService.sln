@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35825.156 d17.13
+VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrdersService.API", "OrdersService.API\OrdersService.API.csproj", "{13F7A81C-C232-4D5E-9FFB-599111F17681}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrdersService.Application", "OrdersService.Application\OrdersService.Application.csproj", "{FA47F242-CBB9-4EE2-A6C9-4A4362D3C0B3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrdersService.Infrastructure", "OrdersService.Infrastructure\OrdersService.Infrastructure.csproj", "{114E5B74-EB27-490A-88DE-48AAD5069FD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "ApiGateway\ApiGateway.csproj", "{1765F80D-0600-42A7-A04E-88E9161C10E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{114E5B74-EB27-490A-88DE-48AAD5069FD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{114E5B74-EB27-490A-88DE-48AAD5069FD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{114E5B74-EB27-490A-88DE-48AAD5069FD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1765F80D-0600-42A7-A04E-88E9161C10E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1765F80D-0600-42A7-A04E-88E9161C10E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1765F80D-0600-42A7-A04E-88E9161C10E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1765F80D-0600-42A7-A04E-88E9161C10E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

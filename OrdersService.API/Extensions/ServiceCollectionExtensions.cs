@@ -38,8 +38,6 @@ namespace OrdersService.API.Extensions
                         h.Username(configuration["RabbitMQ:Username"] ?? "guest");
                         h.Password(configuration["RabbitMQ:Password"] ?? "guest");
                     });
-
-                    cfg.ConfigureEndpoints(ctx);
                 });
             });
 

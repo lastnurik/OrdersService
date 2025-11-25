@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageId>OrderService.IntegrationEvents</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>OrderService Team</Authors>
+    <RepositoryUrl>https://github.com/lastnurik/OrdersService</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Description>Shared integration event contracts for OrderService (e.g. OrderCreatedEvent).</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+</Project>

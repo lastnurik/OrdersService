@@ -28,13 +28,22 @@ namespace OrdersService.Application.Commands.UpdateOrder
             }
 
             existingEntity.TotalAmount = request.TotalAmount;
-
             existingEntity.Status = request.Status;
-
             if (!string.IsNullOrEmpty(request.Description))
             {
                 existingEntity.Description = request.Description;
             }
+
+            // Update address fields
+            if (!string.IsNullOrEmpty(request.Street))
+                existingEntity.Street = request.Street;
+            if (!string.IsNullOrEmpty(request.City))
+                existingEntity.City = request.City;
+            if (!string.IsNullOrEmpty(request.PostalCode))
+                existingEntity.PostalCode = request.PostalCode;
+            if (!string.IsNullOrEmpty(request.Country))
+                existingEntity.Country = request.Country;
+            existingEntity.DeliveryInstructions = request.DeliveryInstructions;
 
             existingEntity.UpdatedAt = DateTime.UtcNow;
 

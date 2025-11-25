@@ -22,6 +22,7 @@ namespace OrdersService.Infrastructure.Repositories
             await _db.SaveChangesAsync(ct);
         }
 
+
         public async Task<bool> DeleteAsync(Guid id, CancellationToken ct)
         {
             var entity = await GetByIdAsync(id, ct);

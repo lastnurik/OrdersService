@@ -15,6 +15,11 @@ namespace OrdersService.Application.DTOs
         DateTime UpdatedAt,
         decimal TotalAmount,
         OrderStatus Status,
-        string Description
+        string Description,
+        string Street,
+        string City,
+        string PostalCode,
+        string Country,
+        string? DeliveryInstructions
     );
 }

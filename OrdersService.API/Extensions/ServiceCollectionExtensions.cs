@@ -10,7 +10,7 @@ namespace OrdersService.API.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddOrdersService(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddOrdersServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<AppDbContext>(options =>
             {

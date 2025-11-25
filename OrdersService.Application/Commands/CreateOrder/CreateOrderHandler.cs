@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MassTransit;
 using MediatR;
-using OrdersService.Application.IntegrationEvents;
+using OrderService.IntegrationEvents;
 using OrdersService.Domain.Entities;
 using OrdersService.Domain.Repositories;
 namespace OrdersService.Application.Commands.CreateOrder

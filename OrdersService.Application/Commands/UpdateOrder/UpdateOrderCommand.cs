@@ -9,6 +9,11 @@ namespace OrdersService.Application.Commands.UpdateOrder
         string CustomerName,
         decimal TotalAmount,
         OrderStatus Status,
-        string Description
-        ) : IRequest<bool>;
+        string Description,
+        string Street,
+        string City,
+        string PostalCode,
+        string Country,
+        string? DeliveryInstructions
+    ) : IRequest<bool>;
 }

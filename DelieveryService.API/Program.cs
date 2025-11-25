@@ -1,15 +1,13 @@
+using DeliveryService.API.Extensions;
+using DeliveryService.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddDeliveryServices(builder.Configuration);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -17,9 +15,25 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var logger = services.GetRequiredService<ILogger<Program>>();
+
+    try
+    {
+        var db = services.GetRequiredService<DeliveryDbContext>();
+        logger.LogInformation("Applying database migrations...");
+        db.Database.Migrate();
+        logger.LogInformation("Database migrations applied successfully.");
+    }
+    catch (Exception ex)
+    {
+        logger.LogCritical(ex, "An error occurred while applying database migrations. Shutting down.");
+    }
+}
 
 app.Run();

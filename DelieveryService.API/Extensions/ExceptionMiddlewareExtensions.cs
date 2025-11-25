@@ -1,6 +1,6 @@
-using OrdersService.API.Middlewares;
+using DeliveryService.API.Middlewares;
 
-namespace OrdersService.API.Extensions
+namespace DeliveryService.API.Extensions
 {
     public static class ExceptionMiddlewareExtensions
     {

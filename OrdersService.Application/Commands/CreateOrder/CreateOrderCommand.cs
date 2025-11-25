@@ -6,6 +6,11 @@ namespace OrdersService.Application.Commands.CreateOrder
     (
         string CustomerName,
         decimal TotalAmount,
-        string Description
-        ) : IRequest<Guid> ;
+        string Description,
+        string Street,
+        string City,
+        string PostalCode,
+        string Country,
+        string? DeliveryInstructions
+    ) : IRequest<Guid> ;
 }

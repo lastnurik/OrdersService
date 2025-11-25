@@ -53,7 +53,16 @@ namespace OrdersService.API.Controllers
         public async Task<IActionResult> Create([FromBody] CreateOrderRequest request, CancellationToken ct)
         {
             _logger.LogInformation("Creating an order");
-            var command = new CreateOrderCommand(request.CustomerName, request.TotalAmount, request.Description ?? string.Empty);
+            var command = new CreateOrderCommand(
+                request.CustomerName,
+                request.TotalAmount,
+                request.Description ?? string.Empty,
+                request.Street,
+                request.City,
+                request.PostalCode,
+                request.Country,
+                request.DeliveryInstructions
+            );
             var id = await _mediator.Send(command, ct);
             _logger.LogInformation("Order with Id=\"{OrderId}\" was created", id);
             return StatusCode(StatusCodes.Status201Created, new { id });
@@ -63,7 +72,18 @@ namespace OrdersService.API.Controllers
         public async Task<IActionResult> Update(Guid id, [FromBody] UpdateOrderRequest request, CancellationToken ct)
         {
             _logger.LogInformation("Updating an order with Id: {OrderId}", id);
-            var command = new UpdateOrderCommand(id, request.CustomerName ?? string.Empty, request.TotalAmount, request.Status, request.Description ?? string.Empty);
+            var command = new UpdateOrderCommand(
+                id,
+                request.CustomerName ?? string.Empty,
+                request.TotalAmount,
+                request.Status,
+                request.Description ?? string.Empty,
+                request.Street,
+                request.City,
+                request.PostalCode,
+                request.Country,
+                request.DeliveryInstructions
+            );
             var ok = await _mediator.Send(command, ct);
 
             if (ok)

@@ -17,7 +17,7 @@ public class DeleteDeliveryRequestHandler : IRequestHandler<DeleteDeliveryReques
         var entity = await _repo.GetByIdAsync(request.Id, cancellationToken);
         if (entity == null)
             return false;
-        await _repo.DeleteAsync(entity, cancellationToken);
+        await _repo.DeleteAsync(entity.Id, cancellationToken);
         return true;
     }
 }
